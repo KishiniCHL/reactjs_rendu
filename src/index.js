@@ -11,6 +11,7 @@ import {
 
 import Home from './Pages/Home';
 import Produits from './Pages/Produits';
+import Cart from './Pages/Cart';
 
 import { Provider } from 'react-redux';
 import { store } from './store';
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/produits/:id",
     element: <Produits />
+  },
+  {
+    path: "/panier",
+    element: <Cart />
   }
 ]);
 
