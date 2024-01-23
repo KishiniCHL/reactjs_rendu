@@ -1,4 +1,5 @@
 import { useGetProduitsQuery, useGetCommentsQuery, useCreateCommentMutation  } from "../Services/API"
+import React, { useState } from 'react';
 import styled from "styled-components"
 
 export default function () {
@@ -57,11 +58,29 @@ function ProductComments({ productId }){
 
 function AddComment({ productId }){
     let [createComment] = useCreateCommentMutation();
+    let [username, setUsername] = useState('');
+    let [comment, setComment] = useState('');
+
 
     return (
-        <button onClick={() => {
-            createComment({ id: productId, username: 'hl', comment: "test" });        }}> 
-            Add comment 
-        </button>
+        <div>
+            <input type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
+            <textarea
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                placeholder="Add comment"
+            />
+            <button onClick={() => {
+                createComment({ id: productId, username: username, comment: comment });
+                setUsername(''); 
+                setComment(''); 
+            }}> 
+                Add comment 
+            </button>
+        </div>
+        // <button onClick={() => {
+        //     createComment({ id: productId, username: 'hl', comment: "test" });        }}> 
+        //     Add comment 
+        // </button>
     );
 }
