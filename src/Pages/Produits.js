@@ -9,7 +9,7 @@ import Navbar from '../Components/Header';
 import { useCart } from '../Providers/CartContext';
 
 import StyledButton from '../Style/StyledButton';
-import { ProductContainer, Productdetails, CommentsContainer, ProductTitle, ProductImage } from '../Style/ProductDetails';
+// import { ProductContainer, Productdetails, CommentsContainer, ProductTitle, ProductImage } from '../Style/ProductDetails';
 
 
 
@@ -52,16 +52,16 @@ export default function ProductDetails() {
         <p>Pas de produits</p>
       ) : (
 
-        <ProductContainer>
-        <Productdetails>
-            <ProductTitle>{product.title}</ProductTitle>
-            <ProductImage src={product.image} alt={product.title} />
+        <div>
+        <div>
+            <h1>{product.title}</h1>
+            <img src={product.image} alt={product.title} />
             <p>{product.price} €</p>
-            <StyledButton onClick={() => addToCart(product)}>
+            <button onClick={() => addToCart(product)}>
             Ajouter au panier
-            </StyledButton>
-        </Productdetails>
-        <CommentsContainer>
+            </button>
+        </div>
+        <div>
             <div>
         {(showAllComments ? comments : comments.slice(0, 6)).map((commentaire) => (
             <div key={commentaire.id}>
@@ -70,9 +70,9 @@ export default function ProductDetails() {
             </div>
         ))}
         {comments.length > 6 && (
-            <StyledButton onClick={() => setShowAllComments(!showAllComments)}>
-            {showAllComments ? 'Voir moins' : 'Voir plus de commentaires'}
-            </StyledButton>
+           <button onClick={() => setShowAllComments(!showAllComments)}>
+           {showAllComments ? 'Voir moins' : 'Voir plus de commentaires'}
+         </button>
         )}</div>
 
         <div>
@@ -89,10 +89,10 @@ export default function ProductDetails() {
             />
             <button onClick={handleAddComment}>Ajouter</button>
           </div>
-        </CommentsContainer>
+        </div>
 
          
-          </ProductContainer>
+          </div>
       )}
     </div>
   );
