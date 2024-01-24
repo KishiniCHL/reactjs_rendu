@@ -24,5 +24,5 @@ export function CartProvider({ children }) {
 }
 
 export function useCart() {
-    return useContext(CartContext)
-}
+    return useContext(CartContext);
+  }

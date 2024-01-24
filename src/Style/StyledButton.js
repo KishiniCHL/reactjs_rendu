@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledButton = styled.button`
+const StyledButton = styled.button`
 align-items: center;
 appearance: none;
 background-color: #FCFCFD;
@@ -46,9 +46,9 @@ margin: 6px;
 }
 `;
 
-export const StyledButtonPink = styled(StyledButton)`
+const StyledButtonPink = styled(StyledButton)`
   background-color: #fcc0f6;
   color: #fff;
 `;
 
-export default {StyledButton, StyledButtonPink};
+export { StyledButton, StyledButtonPink };

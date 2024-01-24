@@ -1,12 +1,7 @@
 import { Link } from 'react-router-dom';
-
-
 import Navbar from '../Components/Header'; 
 import { useCart } from '../Providers/CartContext'; 
-
-import StyledButton from '../Style/StyledButton';
-
-
+import {StyledButton, StyledButtonPink} from '../Style/StyledButton';
 
 function Cart() {
 
@@ -23,9 +18,9 @@ function Cart() {
             <h2>{product.title}</h2>
             <img src={product.image} alt={product.title} />
             <p>{product.price} €</p>
-            <StyledButton onClick={() => removeProductCart(product.id)}>
+            <button onClick={() => removeProductCart(product.id)}>
               Retirer l'article
-            </StyledButton>
+            </button>
           </div>
         ))}
         <p>Total: {total} €</p>
