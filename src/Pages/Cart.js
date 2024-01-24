@@ -1,26 +1,40 @@
+import { Link } from 'react-router-dom';
+
+
 import Navbar from '../Components/Header'; 
 import { useCart } from '../Providers/CartContext'; 
+
+import StyledButton from '../Style/StyledButton';
+
 
 
 function Cart() {
 
         <Navbar />
 
-  const { cart, removeProductCart } = useCart();
+  const { cart, removeProductCart, clearCart } = useCart();
 
   return (
     <div>
       <Navbar />
-
-      <h1>Your Cart</h1>
-      {cart.map((product) => (
-        <div key={product.id}>
-          <h2>{product.title}</h2>
-          <img src={product.image} alt={product.title} />
-          <p>{product.price} €</p>
-          <button onClick={() => removeProductCart(product.id)}>Remove</button>
-        </div>
-      ))}
+      <h1>Votre panier</h1>
+      {cart.length > 0 ? (
+        cart.map((product) => (
+          <div key={product.id}>
+            <h2>{product.title}</h2>
+            <img src={product.image} alt={product.title} />
+            <p>{product.price} €</p>
+            <StyledButton onClick={() => removeProductCart(product.id)}>
+              Retirer l'article
+            </StyledButton>
+          </div>
+        ))
+      ) : (
+        <p>Vous n'avez pas d'articles. <Link to="/">Retournez à la page d'accueil pour voir les produits</Link></p>
+        )}
+      {cart.length > 0 && (
+        <StyledButton onClick={clearCart}>Retirer tous les articles</StyledButton>
+      )}
     </div>
   );
 }

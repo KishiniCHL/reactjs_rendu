@@ -6,36 +6,10 @@ import styled from 'styled-components';
 
 
 import Navbar from '../Components/Header'; 
+import { useCart } from '../Providers/CartContext';
 
-
-const ProductContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    `;
-
-const Productdetails = styled.div`
-    width: 500px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    `;
-
-const CommentsContainer = styled.div`
-   background-color: #f8f8f8;
-   display: flex;
-    `;
-
-const ProductTitle = styled.h3`
-  margin: 0;
-  padding: 0;
-`;
-
-const ProductImage = styled.img`
-  width: 100%;
-  height: auto;
-`;
-
+import StyledButton from '../Style/StyledButton';
+import { ProductContainer, Productdetails, CommentsContainer, ProductTitle, ProductImage } from '../Style/ProductDetails';
 
 
 
@@ -65,9 +39,11 @@ export default function ProductDetails() {
     }
   }, [id, products]);
 
-  
+  const { addToCart} = useCart();
+
 
   return (
+    
     <div>
         <Navbar />
       {isProductsFetching || isCommentsLoading ? (
@@ -80,6 +56,10 @@ export default function ProductDetails() {
         <Productdetails>
             <ProductTitle>{product.title}</ProductTitle>
             <ProductImage src={product.image} alt={product.title} />
+            <p>{product.price} €</p>
+            <StyledButton onClick={() => addToCart(product)}>
+            Ajouter au panier
+            </StyledButton>
         </Productdetails>
         <CommentsContainer>
             <div>
@@ -90,10 +70,9 @@ export default function ProductDetails() {
             </div>
         ))}
         {comments.length > 6 && (
-            <button onClick={() => setShowAllComments(!showAllComments)}>
+            <StyledButton onClick={() => setShowAllComments(!showAllComments)}>
             {showAllComments ? 'Voir moins' : 'Voir plus de commentaires'}
-            </button>
-
+            </StyledButton>
         )}</div>
 
         <div>

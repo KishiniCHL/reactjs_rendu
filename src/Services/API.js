@@ -23,16 +23,6 @@ export const produitsAPI = createApi({
         }
       })
     }),
-    
-
-    // createArticle: builder.mutation({
-    //   query: (data) => ({
-    //     url: '/produits',
-    //     method: "POST",
-    //     body: data
-    //   }),
-    //   invalidatesTags: ['produits'], //on invalide le tag pour Articles
-    // })
   }),
 })
 
