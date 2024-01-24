@@ -11,6 +11,7 @@ const CardStyle = styled.div`
   margin: 10px;
   width: 200px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
 `;
 
 const ProductImage = styled.img`
@@ -26,6 +27,17 @@ const CardContainer = styled.div`
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    background-color: #fff;
+    width: 80%;
+    height: auto;
+
 `;
 
-export { CardStyle, ProductImage, CardContainer };
+
+const ContainerWraper= styled.div`
+    display: flex;
+    justify-content: center;
+`;
+
+
+export { CardStyle, ProductImage, CardContainer, ContainerWraper};

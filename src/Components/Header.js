@@ -9,19 +9,46 @@ import { useCart } from '../Providers/CartContext';
 
 const NavbarStyled = styled.nav`
   padding: 20px;
-  background-color: #f8f8f8;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
 `;
 
 const NavList = styled.ul`
 display: flex;
-justify-content: space-between;
+justify-content: space-around;
+align-items: center;
 list-style: none;
 padding: 0;
 `;
 
 const NavItem = styled.li`
-  margin-right: 20px;
+  text-decoration: none;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 500;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+`;
+
+const TitleStyle = styled.h1`
+  font-family: 'Lobster', 'Montserrat', 'Roboto', sans-serif;
+  text-align: center;
+  font-size: 28px;
+  background: rgb(252,192,246);
+background: radial-gradient(circle, rgba(252,192,246,1) 0%, rgba(147,96,208,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  padding: 0;
+`;
+
+
+const StyledLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 
@@ -32,14 +59,21 @@ export default function Navbar() {
   return (
     <NavbarStyled>
       <NavList>
+      <NavItem>
+        <StyledLink to="/">Accueil</StyledLink>
+      </NavItem>
         <NavItem>
-          <Link to="/">Accueil</Link>
+          <TitleStyle>
+          ★ La boutique Skyblog trop stylé et cool ★
+          </TitleStyle>
         </NavItem>
         <NavItem>
-          <div>
-          <Link to="/panier">Voir le panier ({cart.length} produits)</Link>
+          <StyledLink to="/panier">
+          <div style={{display: 'flex', alignItems: 'center'}}>
+            Voir le panier ({cart.length} produits)
             <img src={CartIcon} alt="Cart" />
           </div>
+          </StyledLink>
         </NavItem>
       </NavList>
     </NavbarStyled>

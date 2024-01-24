@@ -1,16 +1,15 @@
 import { Link } from 'react-router-dom';
 // import styled from 'styled-components';
 
-
-import {
-  useGetProductQuery,
-} from '../Services/API';
-
+import {useGetProductQuery} from '../Services/API';
 import Navbar from '../Components/Header'; 
 import { useCart } from '../Providers/CartContext'; 
 
-import StyledButton from '../Style/StyledButton';
-import { CardStyle, ProductImage, CardContainer } from '../Style/CardStyle';
+//components de style
+import {StyledButton, StyledButtonPink} from '../Style/StyledButton';
+import { CardStyle, ProductImage, CardContainer, ContainerWraper } from '../Style/CardStyle';
+//
+
 
 export default function Home() {
   const { data: products, isFetching } = useGetProductQuery();
@@ -35,7 +34,7 @@ function ProduitsList({ produits }) {
   }
 
   return (
-
+    <ContainerWraper>
     <CardContainer>
       {produits.map((produit) => (
         <CardStyle key={produit.id}>
@@ -47,12 +46,12 @@ function ProduitsList({ produits }) {
                     Voir le produit
                 </StyledButton>
             </Link>
-            <StyledButton onClick={() => addToCart(produit)}>
+            <StyledButtonPink onClick={() => addToCart(produit)}>
             Ajouter au panier
-            </StyledButton>
+            </StyledButtonPink>
         </CardStyle>
       ))}
     </CardContainer>
-
+    </ContainerWraper>
   );
 }

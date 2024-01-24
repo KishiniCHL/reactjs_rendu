@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
 align-items: center;
 appearance: none;
 background-color: #FCFCFD;
@@ -29,6 +29,7 @@ touch-action: manipulation;
 white-space: nowrap;
 will-change: box-shadow, transform;
 font-size: 18px;
+margin: 6px;
 
 &:focus {
   box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
@@ -43,7 +44,11 @@ font-size: 18px;
   box-shadow: #D6D6E7 0 3px 7px inset;
   transform: translateY(2px);
 }
-
 `;
 
-export default StyledButton;
+export const StyledButtonPink = styled(StyledButton)`
+  background-color: #fcc0f6;
+  color: #fff;
+`;
+
+export default {StyledButton, StyledButtonPink};
