@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import {
-  useGetAllProductsQuery,
-  useGetCommentsQuery,
-  useCreateCommentMutation,
+  useGetProductQuery,
 } from '../Services/API';
 
 import Navbar from '../Components/Header'; 
-
+import { useCart } from '../Providers/CartContext'; 
 
 const Card = styled.div`
   display: flex;
@@ -82,8 +80,8 @@ const CardContainer = styled.div`
 `;
 
 export default function Home() {
-  const { data: products, isFetching } = useGetAllProductsQuery();
-
+  const { data: products, isFetching } = useGetProductQuery();
+    console.log(products);
   return (
     <div>
       <Navbar />
@@ -96,87 +94,32 @@ export default function Home() {
   );
 }
 
-
-
 function ProduitsList({ produits }) {
+  const { addToCart, removeFromCart } = useCart();
+
   if (!produits) {
     return <p>No data</p>;
   }
 
   return (
+
     <CardContainer>
       {produits.map((produit) => (
         <Card key={produit.id}>
             <h3>{produit.title}</h3>
+            <p>{produit.price} €</p>
             <ProductImage src={produit.image} alt={produit.title} />
             <Link to={`/produits/${produit.id}`}>
                 <StyledButton>
                     Voir le produit
                 </StyledButton>
             </Link>
-            <StyledButton>
+            <StyledButton onClick={() => addToCart(produit)}>
             Ajouter au panier
             </StyledButton>
-                    {/* <ProductComments productId={produit.id} />
-          <AddComment productId={produit.id} /> */}
         </Card>
       ))}
     </CardContainer>
 
   );
 }
-
-
-
-// function ProductComments({ productId }){
-//     let { data: comment, isLoading } = useGetCommentsQuery(productId)
-    
-//     if (isLoading){
-//         return <p>Loading comments...</p>
-//     }
-
-//     if(!comment){
-//         return <p>No comments</p>
-//     }
-
-//     return (
-//         <div>
-//             {comment.slice(0, 4).map((commentaire) => (
-//                 <div key={commentaire.id}>
-//                     <h3>{commentaire.username}</h3>
-//                     <p>{commentaire.comment.substring(0, 250)}</p>
-//                 </div>
-//             ))}
-//         </div>
-//     );
-// }
-
-
-// function AddComment({ productId }){
-//     let [createComment] = useCreateCommentMutation();
-//     let [username, setUsername] = useState('');
-//     let [comment, setComment] = useState('');
-
-
-//     return (
-//         <div>
-//             <input type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
-//             <textarea
-//                 value={comment}
-//                 onChange={(e) => setComment(e.target.value)}
-//                 placeholder="Add comment"
-//             />
-//             <button onClick={() => {
-//                 createComment({ id: productId, username: username, comment: comment });
-//                 setUsername(''); 
-//                 setComment(''); 
-//             }}> 
-//                 Add comment 
-//             </button>
-//         </div>
-//         // <button onClick={() => {
-//         //     createComment({ id: productId, username: 'hl', comment: "test" });        }}> 
-//         //     Add comment 
-//         // </button>
-//     );
-// }

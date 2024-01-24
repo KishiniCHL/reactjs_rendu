@@ -5,13 +5,9 @@ export const produitsAPI = createApi({
   reducerPath: 'produitsAPI',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://iim.etherial.fr/' }),
   endpoints: (builder) => ({
-    getAllProducts: builder.query({
+    getProduct: builder.query({
       query: () => `/products`,
       providesTags: ['produits'],
-    }),
-    getProduct: builder.query({
-      query: (id) => `/products/${id}`,
-      providesTags: (result, error, id) => [{ type: 'produits', id }],
     }),
     getComments: builder.query({
       query: (id) => `products/${id}/comments`,
@@ -40,4 +36,4 @@ export const produitsAPI = createApi({
   }),
 })
 
-export const { useGetAllProductsQuery, useGetProductQuery, useGetCommentsQuery, useCreateCommentMutation } = produitsAPI;
+export const {useGetProductQuery, useGetCommentsQuery, useCreateCommentMutation } = produitsAPI;
