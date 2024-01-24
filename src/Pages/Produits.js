@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetProductQuery, useGetCommentsQuery, useCreateCommentMutation } from '../Services/API';
-import styled from 'styled-components';
-
-
-
-import Navbar from '../Components/Header'; 
 import { useCart } from '../Providers/CartContext';
-
-import StyledButton from '../Style/StyledButton';
-// import { ProductContainer, Productdetails, CommentsContainer, ProductTitle, ProductImage } from '../Style/ProductDetails';
-
-
+import Navbar from '../Components/Header'; 
+import { ProductContainer, ProductBloc, ProductTitle, ProductImage, CommentsContainer } from '../Style/ProductDetails'; // Remove StyledButton from here
+import { StyledButton } from '../Style/StyledButton'; 
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -52,16 +45,16 @@ export default function ProductDetails() {
         <p>Pas de produits</p>
       ) : (
 
-        <div>
-        <div>
-            <h1>{product.title}</h1>
-            <img src={product.image} alt={product.title} />
+        <ProductContainer>
+        <ProductBloc>
+            <ProductTitle>{product.title}</ProductTitle>
+            <ProductImage src={product.image} alt={product.title} />
             <p>{product.price} €</p>
-            <button onClick={() => addToCart(product)}>
+            <StyledButton onClick={() => addToCart(product)}>
             Ajouter au panier
-            </button>
-        </div>
-        <div>
+            </StyledButton>
+        </ProductBloc>
+        <CommentsContainer>
             <div>
         {(showAllComments ? comments : comments.slice(0, 6)).map((commentaire) => (
             <div key={commentaire.id}>
@@ -70,9 +63,9 @@ export default function ProductDetails() {
             </div>
         ))}
         {comments.length > 6 && (
-           <button onClick={() => setShowAllComments(!showAllComments)}>
-           {showAllComments ? 'Voir moins' : 'Voir plus de commentaires'}
-         </button>
+            <StyledButton onClick={() => setShowAllComments(!showAllComments)}>
+            {showAllComments ? 'Voir moins' : 'Voir plus de commentaires'}
+            </StyledButton>
         )}</div>
 
         <div>
@@ -89,10 +82,10 @@ export default function ProductDetails() {
             />
             <button onClick={handleAddComment}>Ajouter</button>
           </div>
-        </div>
+        </CommentsContainer>
 
          
-          </div>
+          </ProductContainer>
       )}
     </div>
   );

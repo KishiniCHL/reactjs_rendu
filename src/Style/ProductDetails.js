@@ -6,7 +6,7 @@ const ProductContainer = styled.div`
     justify-content: center;
     `;
 
-const Productdetails = styled.div`
+const ProductBloc = styled.div`
     width: 500px;
     height: auto;
     display: flex;
@@ -29,4 +29,4 @@ const ProductImage = styled.img`
 `;
 
 
-export { ProductContainer, Productdetails, CommentsContainer, ProductTitle, ProductImage};
+export { ProductContainer, ProductBloc, CommentsContainer, ProductTitle, ProductImage};
