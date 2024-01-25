@@ -63,9 +63,11 @@ export default function Navbar() {
         <StyledLink to="/">Accueil</StyledLink>
       </NavItem>
         <NavItem>
+        <StyledLink to="/">
           <TitleStyle>
-          ★ La boutique Skyblog trop stylé et cool ★
+            ★ La boutique trop stylée★
           </TitleStyle>
+        </StyledLink>
         </NavItem>
         <NavItem>
           <StyledLink to="/panier">

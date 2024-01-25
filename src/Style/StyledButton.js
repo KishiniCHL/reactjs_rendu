@@ -51,4 +51,9 @@ const StyledButtonPink = styled(StyledButton)`
   color: #fff;
 `;
 
-export { StyledButton, StyledButtonPink };
+const StyledButtonPinkSmall = styled(StyledButtonPink)`
+  height: 32px;
+  font-size: 14px;
+`;
+
+export { StyledButton, StyledButtonPink, StyledButtonPinkSmall };
