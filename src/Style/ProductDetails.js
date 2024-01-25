@@ -1,11 +1,8 @@
 import styled from "styled-components";
 
-const ContainerWraper = styled.div`
-  display: flex;
-  justify-content: center;
-`;
 
 const ProductContainer = styled.div`
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -18,6 +15,8 @@ const ProductBloc = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
+  margin-top: 24px;
+
 `;
 
 const ProductComment = styled.div`
@@ -68,14 +67,7 @@ const PlaceHolderStyle = styled.textarea`
   overflow:hidden;
   `;
 
-  const LinkProduct  = styled.a` 
-  text-decoration: none;
-  width: 210px;
-  margin-bottom: 24px;
-  `;
-
 export {
-  ContainerWraper,
   ProductComment,
   ProductContainer,
   ProductBloc,
@@ -86,5 +78,4 @@ export {
   PlaceHolderStyle,
   TextContainer ,
   CommentsDisplayContainer,
-  LinkProduct
 };

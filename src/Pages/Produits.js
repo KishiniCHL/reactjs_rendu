@@ -8,7 +8,6 @@ import {
 import { useCart } from "../Providers/CartContext";
 import Navbar from "../Components/Header";
 import {
-  ContainerWraper,
   ProductComment,
   ProductContainer,
   ProductBloc,
@@ -19,7 +18,6 @@ import {
   InputStyle,
   PlaceHolderStyle,
   CommentsDisplayContainer,
-  LinkProduct
 } from "../Style/ProductDetails"; // Remove StyledButton from here
 import {
   StyledButton,
@@ -65,11 +63,10 @@ export default function ProductDetails() {
       ) : !product ? (
         <p>Pas de produits</p>
       ) : (
-        <ContainerWraper>
           <ProductContainer>
-            <LinkProduct to="/">
-              <StyledButton>Retour en arrière</StyledButton>
-            </LinkProduct>
+            <StyledButton as={Link} to="/">
+              Revenir en arrière
+            </StyledButton>
             <ProductComment>
               <ProductBloc>
                 <ProductTitle>{product.title}</ProductTitle>
@@ -119,7 +116,6 @@ export default function ProductDetails() {
               </CommentsContainer>
             </ProductComment>
           </ProductContainer>
-        </ContainerWraper>
       )}
     </div>
   );
